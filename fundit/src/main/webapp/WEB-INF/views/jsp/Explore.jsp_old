@@ -1,0 +1,55 @@
+<%@ include file="include.jsp"%>
+<%@ include file="Header.jsp"%>
+<%@ page import="java.util.*,com.fundit.beans.ProjectBean" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>FundIT Explore</title>
+        <style>
+    </style>
+  </head>
+
+<body>
+
+<% if(request.getAttribute("message") != null){ %>
+<center><%= request.getAttribute("message") %></center>
+<% } %>
+
+<table id="getAllProjectTable" class="">
+    <thead>
+        <tr>
+            <th>Project ID</th>
+            <th>Project Title</th>
+            <th>Project Description</th>
+            <th>Project Purpose</th>
+            <th>Project Golbal Purpose</th>
+            <th>Project Planned Finished Date</th>
+            <th>Project Fund required</th>
+            <th>Project Fund received</th>
+            <th>User ID</th>                                  
+        </tr>
+    </thead>
+    <tbody>
+        <% 	List<ProjectBean> projectBeans = (ArrayList<ProjectBean>) request.getAttribute("projectBeans");
+        	for(ProjectBean projects:projectBeans) { %>
+            <tr>
+                <<td><%= projects.getProject_id() %></td>
+                <td><%= projects.getProject_title() %></td>
+                <td><%= projects.getProject_description() %></td>
+                <td><%= projects.getProject_purpose() %></td>
+                <td><%= projects.getProject_global_business() %></td>
+                <td><%= projects.getProject_planned_finish_date() %></td>
+                <td><%= projects.getProject_fund_required() %></td>
+                <td><%= projects.getProject_fund_received() %></td>
+                <td><%= projects.getUser_id() %></td>                                                
+            </tr>       
+       <% } %>
+    </tbody>
+</table>
+  </body>
+</html>

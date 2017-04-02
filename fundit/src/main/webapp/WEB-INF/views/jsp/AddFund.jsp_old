@@ -1,0 +1,48 @@
+<%@include file="include.jsp"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>FundIt - Add Funds</title>
+
+<spring:url value="/resources/core/css/animate.css" var="coreCss" />
+<spring:url value="/resources/core/css/style.css" var="bootstrapCss" />
+<link href="${bootstrapCss}" rel="stylesheet" />
+<link href="${coreCss}" rel="stylesheet" />
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+<%
+	if (request.getAttribute("message") != null) {
+%>
+<center><%=request.getAttribute("message")%></center>
+<%
+	}
+%> <form:form id="loginForm" method="post" action="/fund/add"
+	modelAttribute="fundingBean">
+
+	<form:label path="fund_added">Amount to Add</form:label>
+	<form:input id="fund_added" name="fund_added" path="" />
+	<br>
+	<form:hidden path="project_id" />
+	<input type="submit" value="Submit" />
+</form:form></div>
+</body>
+
+<script>
+	$('#username').focus(function() {
+		$('label[for="fund_added"]').addClass('selected');
+	});
+	$('#fund_added').blur(function() {
+		$('label[for="fund_added"]').removeClass('selected');
+	});
+</script>
+
+</html>
